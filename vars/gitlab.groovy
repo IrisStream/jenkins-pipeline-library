@@ -21,7 +21,7 @@ def updateRepo(){
 		checkout changelog: true,poll: true, scm: [
 			$class: 'GitSCM',
 			branches: [[ name: "${env.gitlabAfter}" ]],
-			userRemoteConfigs: [[name: 'origin', url: "${env.gitlabSourceRepoSshUrl()}"]],
+			userRemoteConfigs: [[name: 'origin', url: "${env.gitlabSourceRepoSshUrl}"]],
 		]
 	}
 }
