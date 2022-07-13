@@ -3,7 +3,7 @@ class Gitlab{
 		if(isMergeRequest()){
 			checkout changelog: true, poll: true, scm: [
 				$class: 'GitSCM',
-				branches: [[name: "origin/${env.gitlabSourceBranch}"]],
+				branches: [[name: "origin/${gitlabSourcuBranch}"]],
 				extensions: [
 					[
 						$class: 'PreBuildMerge', 
@@ -11,18 +11,18 @@ class Gitlab{
 							fastForwardMode: 'FF', 
 							mergeRemote: 'origin', 
 							mergeStrategy: 'DEFAULT', 
-							mergeTarget: "${env.gitlabTargetBranch}"
+							mergeTarget: "${gitlabTargetBranch}"
 						]
 					]
 				],
-				userRemoteConfigs: [[name: 'origin', url: "${env.gitlabSourceRepoSshUrl}"]]
+				userRemoteConfigs: [[name: 'origin', url: "${gitlabSourceRepoSshUrl}"]]
 			]
 		}
 		else{
 			checkout changelog: true,poll: true, scm: [
 				$class: 'GitSCM',
-				branches: [[ name: "${env.gitlabAfter}" ]],
-				userRemoteConfigs: [[name: 'origin', url: "${env.gitlabSourceRepoSshUrl}"]],
+				branches: [[ name: "${gitlabAfter}" ]],
+				userRemoteConfigs: [[name: 'origin', url: "${gitlabSourceRepoSshUrl}"]],
 			]
 		}
 	}
