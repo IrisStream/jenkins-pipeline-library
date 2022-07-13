@@ -3,7 +3,7 @@ class Gitlab{
 		if(isMergeRequest()){
 			checkout changelog: true, poll: true, scm: [
 				$class: 'GitSCM',
-				branches: [[name: "origin/${gitlabSourcuBranch}"]],
+				branches: [[name: "origin/${getSourceBranch()}"]],
 				extensions: [
 					[
 						$class: 'PreBuildMerge', 
@@ -11,18 +11,18 @@ class Gitlab{
 							fastForwardMode: 'FF', 
 							mergeRemote: 'origin', 
 							mergeStrategy: 'DEFAULT', 
-							mergeTarget: "${gitlabTargetBranch}"
+							mergeTarget: "${getTargetBranch()}"
 						]
 					]
 				],
-				userRemoteConfigs: [[name: 'origin', url: "${gitlabSourceRepoSshUrl}"]]
+				userRemoteConfigs: [[name: 'origin', url: "${getSourceUrl()}"]]
 			]
 		}
 		else{
 			checkout changelog: true,poll: true, scm: [
 				$class: 'GitSCM',
-				branches: [[ name: "${gitlabAfter}" ]],
-				userRemoteConfigs: [[name: 'origin', url: "${gitlabSourceRepoSshUrl}"]],
+				branches: [[ name: "${getCommitId()}" ]],
+				userRemoteConfigs: [[name: 'origin', url: "${getSourceRepoUrl()}"]],
 			]
 		}
 	}
@@ -52,7 +52,19 @@ class Gitlab{
 		gitlabSourceBranch
 	}
 
+	def getTargetBranch(){
+		gitlabTargetBranch
+	}
+
 	def getMergeRequestByFullName(){
 		gitlabUserName
+	}
+
+	def getRepoUrl(){
+		gitlabSourceRepoHttpUrl
+	}
+	
+	def getCommitId(){
+		gitlabAfter
 	}
 }
