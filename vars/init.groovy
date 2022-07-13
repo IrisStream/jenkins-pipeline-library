@@ -8,7 +8,7 @@ def call(){
     env.SOURCE_DIR="/home/build_user/src/spring-petclinic2"
     env.MR_SOURCE_DIR="/home/build_user/src/spring-petclinic2-mr"
     env.DB_BACKUP_DIR="/home/deploy_user/db_backup/"
-    
+
     //URL
     env.NEXUS_URL="nexus:5000"
     env.MYSQL_URL="mysql-server"
