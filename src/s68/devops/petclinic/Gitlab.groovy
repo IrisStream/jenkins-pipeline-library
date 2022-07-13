@@ -1,5 +1,5 @@
 class Gitlab{
-	def UpdateRepo(){
+	def updateRepo(){
 		if(isMergeRequest()){
 			checkout changelog: true, poll: true, scm: [
 				$class: 'GitSCM',
