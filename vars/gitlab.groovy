@@ -20,8 +20,8 @@ def updateRepo(){
 	else{
 		checkout changelog: true,poll: true, scm: [
 			$class: 'GitSCM',
-			branches: [[ name: "${getCommitId()}" ]],
-			userRemoteConfigs: [[name: 'origin', url: "${getSourceRepoUrl()}"]],
+			branches: [[ name: "${env.gitlabAfter}" ]],
+			userRemoteConfigs: [[name: 'origin', url: "${env.gitlabSourceRepoSshUrl()}"]],
 		]
 	}
 }
