@@ -2,7 +2,7 @@ def updateRepo(){
 	if(isMergeRequest()){
 		checkout changelog: true, poll: true, scm: [
 			$class: 'GitSCM',
-			branches: [[name: "origin/${getSourceBranch()}"]],
+			branches: [[name: "origin/${env.gitlabSourceBranch}"]],
 			extensions: [
 				[
 					$class: 'PreBuildMerge', 
@@ -10,11 +10,11 @@ def updateRepo(){
 						fastForwardMode: 'FF', 
 						mergeRemote: 'origin', 
 						mergeStrategy: 'DEFAULT', 
-						mergeTarget: "${getTargetBranch()}"
+						mergeTarget: "${env.gitlabTargetBranch}"
 					]
 				]
 			],
-			userRemoteConfigs: [[name: 'origin', url: "${getSourceUrl()}"]]
+			userRemoteConfigs: [[name: 'origin', url: "${env.gitlabSourceRepoSshUrl}"]]
 		]
 	}
 	else{
