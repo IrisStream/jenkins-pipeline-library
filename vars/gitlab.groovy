@@ -64,5 +64,5 @@ def getRepoUrl(){
 }
 
 def getCommitId(){
-	gitlabAfter
+	env.gitlabAfter
 }
