@@ -4,8 +4,8 @@ def testSource(){
 		dir(SOURCE_DIR){
 			withSonarQubeEnv(installationName: 'spring-petclinic'){
 				echo "Quality Check"
-				echo "$JAVA_HOME"
-				echo "mvn --version"
+				sh "$JAVA_HOME"
+				sh "mvn --version"
 				sh "$WORKSPACE/jenkins_scripts/quality_check.sh"
 			}
 		}
