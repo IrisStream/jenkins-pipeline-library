@@ -6,6 +6,7 @@ def buildSource(){
 		}
 		stage("Build Source Code"){
 			echo "Build Source Code"
+			sh "$WORKSPACE/jenkins_scripts/build_src.sh"
 		}
 	}
 }
