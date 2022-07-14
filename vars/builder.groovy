@@ -1,5 +1,4 @@
 def buildSource(){
-	checkout scm
 	dir(SOURCE_DIR){
 		stage("Update Repo"){
 			echo "Update Repo"
