@@ -1,28 +1,38 @@
 def updateRepo(){
-	if(isMergeRequest()){
-		checkout changelog: true, poll: true, scm: [
-			$class: 'GitSCM',
-			branches: [[name: "origin/${env.gitlabSourceBranch}"]],
-			extensions: [
-				[
-					$class: 'PreBuildMerge', 
-					options: [
-						fastForwardMode: 'FF', 
-						mergeRemote: 'origin', 
-						mergeStrategy: 'DEFAULT', 
-						mergeTarget: "${env.gitlabTargetBranch}"
+	withCredentials([string(credentialsId: 'git-credential', variable: 'GIT_CREDENTIAL']){
+		if(isMergeRequest()){
+			checkout changelog: true, poll: true, scm: [
+				$class: 'GitSCM',
+				branches: [[name: "origin/${env.gitlabSourceBranch}"]],
+				extensions: [
+					[
+						$class: 'PreBuildMerge', 
+						options: [
+							fastForwardMode: 'FF', 
+							mergeRemote: 'origin', 
+							mergeStrategy: 'DEFAULT', 
+							mergeTarget: "${env.gitlabTargetBranch}"
+						]
 					]
-				]
-			],
-			userRemoteConfigs: [[name: 'origin', url: "${env.gitlabSourceRepoSshUrl}"]]
-		]
-	}
-	else{
-		checkout changelog: true,poll: true, scm: [
-			$class: 'GitSCM',
-			branches: [[ name: "${env.gitlabAfter}" ]],
-			userRemoteConfigs: [[name: 'origin', url: "${env.gitlabSourceRepoSshUrl}"]],
-		]
+				],
+				userRemoteConfigs: [[
+					name: 'origin', 
+					url: "${env.gitlabSourceRepoSshUrl}",
+					credentialsId: 'git-credential'
+				]]
+			]
+		}
+		else{
+			checkout changelog: true,poll: true, scm: [
+				$class: 'GitSCM',
+				branches: [[ name: "${env.gitlabAfter}" ]],
+				userRemoteConfigs: [[
+					name: 'origin', 
+					url: "${env.gitlabSourceRepoSshUrl}",
+					credentialsId: 'git-credential'
+				]]
+			]
+		}
 	}
 }
 
