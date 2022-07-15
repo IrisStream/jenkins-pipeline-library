@@ -5,9 +5,9 @@
 		"Deploy": "deploy-machine"
 	},
 	"dir":{
-		"SOURCE_DIR":"/home/build_user/src/spring-petclinic2",
-		"MR_SOURCE_DIR":"/home/build_user/src/spring-petclinic2-mr",
-		"DB_BACKUP_DIR":"/home/deploy_user/db_backup/"
+		"SOURCE":"/home/build_user/src/spring-petclinic2",
+		"MR_SOURCE":"/home/build_user/src/spring-petclinic2-mr",
+		"DB_BACKUP":"/home/deploy_user/db_backup/"
 	},
 	"server":{
 		"nexus":"nexus:5000",

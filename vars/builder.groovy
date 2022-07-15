@@ -1,5 +1,5 @@
-def buildSource(){
-	dir(vars.dir.SOURCE_DIR){
+def buildSource(SOURCE_DIR){
+	dir(SOURCE_DIR){
 		stage("Update Repo"){
 			echo "Update Repo"
 			gitlab.updateRepo()

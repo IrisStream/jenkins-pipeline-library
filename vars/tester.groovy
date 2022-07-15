@@ -1,7 +1,7 @@
-def testSource(){
+def testSource(SOURCE_DIR){
 	stage("Code Quality Check"){
 		echo "Code Quality Check"
-		dir(vars.dir.SOURCE_DIR){
+		dir(SOURCE_DIR){
 			withSonarQubeEnv(installationName: 'spring-petclinic'){
 				echo "Quality Check"
 				sh "$WORKSPACE/jenkins_scripts/quality_check.sh"
