@@ -1,0 +1,28 @@
+{
+	"agent":{
+		"Jenkins": "jenkins",
+		"Build": "build-machine",
+		"Deploy": "deploy-machine"
+	},
+	"dir":{
+		"SOURCE_DIR":"/home/build_user/src/spring-petclinic2",
+		"MR_SOURCE_DIR":"/home/build_user/src/spring-petclinic2-mr",
+		"DB_BACKUP_DIR":"/home/deploy_user/db_backup/"
+	},
+	"server":{
+		"nexus":"nexus:5000",
+		"mysql":"mysql-server",
+		"deploy":"deploy-host"
+	},
+	"healthcheck":{
+		"attemps": 30,
+		"timeout": 5
+	},
+	"app_info":{
+		"app_name":"spring-petclinic2",
+		"app_version":"1.0.0",
+		"app_type":"web",
+		"repo_url":"git@gitlab.com:IrisStream/spring-petclinic2.git",
+		"log_path":"var/log/spring-petclinic2"
+	}
+}
